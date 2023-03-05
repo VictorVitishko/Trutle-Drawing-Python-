@@ -34,6 +34,24 @@ def polygon(n):
         t.forward(50)
         t.left(360/n)
 
+
+def half_circle(radius = 50):
+    num_sides = 50
+    p = 3.14
+    for i in range (num_sides):
+        t.forward((radius*p) / num_sides)
+        t.left(180/num_sides)
+
+
+def rainbow(x=0, y=0):
+    col = ['violet', 'blue', 'lightblue',
+        'green', 'yellow', 'orange', 'red']
+    for i in range(7):
+        move(x+i*10, y)
+        t.setheading(90)
+        t.color(col[i])
+        half_circle(radius=50 + i*10 )
+
 def spiral():
     for i in range(50):
         t.forward(i)
@@ -44,6 +62,7 @@ def olympic_circle(x, y, color):
     t.width(10)
     t.color(color)
     circle()
+
 
 def olympic_logo(x=0, y=0):
     olympic_circle(x, y, 'black')
@@ -109,6 +128,11 @@ def black():
 def eracer():
     t.color('white')
     t.width(60)
+
+def rainbow_key():
+    x = t.xcor()
+    y = t.ycor()
+    rainbow(x, y)
     
 def olympic_key():
     x = t.xcor()
@@ -132,6 +156,7 @@ t.screen.onkeypress(pentagon, 'p')
 t.screen.onkeypress(spiral, 'P')
 t.screen.onkeypress(yellow, 'y')
 t.screen.onkeypress(grey, 'G')
-t.screen.onkeypress(brown, 'b + r')
+t.screen.onkeypress(brown, 'R')
+t.screen.onkeypress(rainbow_key, 'A')
 t.screen.listen()
 t.screen.mainloop()
